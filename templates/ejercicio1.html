@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilosEj1.css') }}">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <h1>Calculo de compras</h1>
+    <form action="/ejercicio1" method="post">
+        <input type="text" name="nombre" placeholder="Ingresa tu nombre" value="{{ request.form.nombre if request.form.nombre else '' }}">
+        <input type="number" name="edad" placeholder="Ingresa tu edad" value="{{ request.form.edad if request.form.edad else '' }}">
+        <input type="number" name="cantidad" placeholder="Ingresa la cantidad de tarros de pintura a comprar" value="{{ request.form.cantidad if request.form.cantidad else '' }}">
+        <input type="submit" value="Calcular">
+    </form>
+
+    {% if nombre %}
+        <div class="resultados">
+            <h2>Resultados:</h2>
+            <p>Nombre del cliente: {{ nombre }}</p>
+            <p>Total sin descuento: ${{ total_sin_descuento }}</p>
+            <p>El descuento es: ${{ descuento }}</p>
+            <p>El total a pagar es de: ${{ total_con_descuento }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
